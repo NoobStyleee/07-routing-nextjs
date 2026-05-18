@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import css from '../@sidebar/SidebarNotes.module.css';
 
-const AVAILABLE_TAGS = ['Work', 'Personal', 'Home', 'Study', 'Important'];
+const AVAILABLE_TAGS = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 
 export default function SidebarDefault() {
   return (
