@@ -2,13 +2,17 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
-
 export const metadata = {
   title: 'NoteHub',
   description: 'Manage your notes efficiently',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+  modal: React.ReactNode;
+}
+
+export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
@@ -16,6 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
+          
+          {modal}
         </TanStackProvider>
       </body>
     </html>
