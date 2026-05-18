@@ -16,19 +16,24 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { notifyNoNote } from "../../lib/toast";
 import css from "./Notes.client.module.css"; 
 
-function NotesClient() {
+interface NotesClientProps {
+  initialTag?: string;
+}
+
+function NotesClient({ initialTag }: NotesClientProps) {
   const [createNoteThis, setCreateNoteThis] = useState(false);
   const [input, setInput] = useState("");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isError, isSuccess, isFetching } = useQuery({
-    queryKey: ["notes", page, query],
+  const { data, isLoading, isError, isSuccess } = useQuery({
+    queryKey: ["notes", page, query, initialTag],
     queryFn: () =>
       fetchNotes({
         page,
         search: query || undefined,
         perPage: 12,
+        tag: initialTag,
       }),
     placeholderData: keepPreviousData,
   });
@@ -53,7 +58,7 @@ function NotesClient() {
 
   useEffect(() => {
     setPage(1);
-  }, [query]);
+  }, [query, initialTag]);
 
   const totalPages = data?.totalPages ?? 0;
 
@@ -77,10 +82,10 @@ function NotesClient() {
         </button>
       </header>
 
-      {(isLoading || isFetching) && <Loader />}
+      {isLoading && <Loader />}
       {isError && <ErrorMessage />}
 
-      {!isLoading && !isFetching && isSuccess && data.notes.length > 0 && (
+      {isSuccess && data && data.notes.length > 0 && (
         <NoteList notes={data.notes} />
       )}
 
