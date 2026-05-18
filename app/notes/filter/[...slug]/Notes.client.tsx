@@ -1,19 +1,19 @@
 'use client';
 
 import "modern-normalize";
-import Loader from "../../components/Loader/Loader";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import Pagination from "../../components/Pagination/Pagination";
-import SearchBox from "../../components/SearchBox/SearchBox";
-import Modal from "../../components/Modal/Modal";
-import NoteForm from "../../components/NoteForm/NoteForm";
+import Loader from "../../../../components/Loader/Loader";
+import ErrorMessage from "../../../../components/ErrorMessage/ErrorMessage";
+import Pagination from "../../../../components/Pagination/Pagination";
+import SearchBox from "../../../../components/SearchBox/SearchBox";
+import Modal from "../../../../components/Modal/Modal";
+import NoteForm from "../../../../components/NoteForm/NoteForm";
 import { useState, useEffect } from "react";
-import { fetchNotes } from "../../lib/api";
-import NoteList from "../../components/NoteList/NoteList";
+import { fetchNotes } from "../../../../lib/api";
+import NoteList from "../../../../components/NoteList/NoteList";
 import { useDebouncedCallback } from "use-debounce";
 import { Toaster } from "react-hot-toast";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { notifyNoNote } from "../../lib/toast";
+import { notifyNoNote } from "../../../../lib/toast";
 import css from "./Notes.client.module.css"; 
 
 interface NotesClientProps {
